@@ -1,0 +1,29 @@
+<div>
+    <h2>Users</h2>
+    <p></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.email}"></td>
+            <td><a th:href="@{/users/{id}(id=${user.id})}">Edit</a></td>
+            <td><a th:href="@{/delete/users/{id}(id=${user.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <p><a href="/signup">Add a new user</a></p>
+</div>
