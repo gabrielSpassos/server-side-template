@@ -2,6 +2,7 @@ package com.gabrielspassos.poc.controller;
 
 import com.gabrielspassos.poc.controller.request.UserRequest;
 import com.gabrielspassos.poc.dto.UserDTO;
+import com.gabrielspassos.poc.exception.BusinessException;
 import com.gabrielspassos.poc.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,11 @@ public class UserController {
             return "add-user";
         }
 
-        userService.createUser(userRequest);
+        try {
+            userService.createUser(userRequest);
+        } catch (BusinessException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
 
         model.addAttribute("users", userService.getUsers());
 

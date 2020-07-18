@@ -1,6 +1,6 @@
 <div>
     <h2>Users</h2>
-    <p></p>
+    <p th:text="${errorMessage}">1</p>
     <table>
         <thead>
         <tr>
@@ -11,12 +11,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>d</td>
-        </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.login}"></td>
             <td th:text="${user.email}"></td>
