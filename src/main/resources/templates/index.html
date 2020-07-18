@@ -1,25 +1,38 @@
-<div>
-    <h2>Users</h2>
-    <p th:text="${errorMessage}">1</p>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Login</th>
-            <th>Email</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.login}"></td>
-            <td th:text="${user.email}"></td>
-            <td><a th:href="@{/users/{id}(id=${user.id})}">Edit</a></td>
-            <td><a th:href="@{/delete/users/{id}(id=${user.id})}">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <p><a href="/signup">Add a new user</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Users</h2>
+        <p th:text="${errorMessage}">1</p>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.login}"></td>
+                <td th:text="${user.email}"></td>
+                <td><a th:href="@{/users/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/users/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <p><a href="/signup">Add a new user</a></p>
+    </div>
+</body>
+</html>
