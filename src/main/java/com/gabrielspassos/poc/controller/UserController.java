@@ -42,8 +42,7 @@ public class UserController {
             model.addAttribute("errorMessage", e.getMessage());
         }
 
-        model.addAttribute("users", userService.getUsers());
-
+        model.addAttribute("users", userService.getActiveUsers());
         return "index";
     }
 
@@ -61,16 +60,21 @@ public class UserController {
             return "update-user";
         }
 
-        userService.updateUser(id, userRequest);
-        model.addAttribute("users", userService.getUsers());
-        return "redirect:/index";
+        try {
+            userService.updateUser(id, userRequest);
+        } catch (BusinessException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+
+        model.addAttribute("users", userService.getActiveUsers());
+        return "index";
     }
 
     @GetMapping("/delete/users/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model) {
         userService.deleteUser(id);
 
-        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("users", userService.getActiveUsers());
         return "index";
     }
 }

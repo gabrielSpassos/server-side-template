@@ -26,13 +26,14 @@ import static com.gabrielspassos.poc.enumerator.UserStatusEnum.INACTIVE;
 @AllArgsConstructor
 public class UserService {
 
-    private static final String LOGIN_REGEX = "\\S.+\\w\\d?";
+    private static final String LOGIN_REGEX = "\\S.?\\w\\d?";
     private static final String PASSWORD_REGEX = "\\d{4}";
     private static final String EMAIL_REGEX = "^(.+)@(.+)$";
     private UserRepository userRepository;
 
-    public List<UserDTO> getUsers() {
+    public List<UserDTO> getActiveUsers() {
         return userRepository.findAll().stream()
+                .filter(entity -> ACTIVE.equals(entity.getStatus()))
                 .map(UserDTOBuilder::build)
                 .collect(Collectors.toList());
     }
@@ -58,6 +59,8 @@ public class UserService {
     }
 
     public UserDTO updateUser(Long id, UserRequest userRequest) {
+        validateUser(userRequest);
+
         return userRepository.findById(id)
                 .map(entity -> UserEntityBuilder.build(entity, userRequest))
                 .map(updatedUser -> userRepository.save(updatedUser))

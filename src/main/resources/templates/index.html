@@ -4,6 +4,7 @@
     <table>
         <thead>
         <tr>
+            <th>ID</th>
             <th>Login</th>
             <th>Email</th>
             <th>Edit</th>
@@ -12,6 +13,7 @@
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
             <td th:text="${user.login}"></td>
             <td th:text="${user.email}"></td>
             <td><a th:href="@{/users/{id}(id=${user.id})}">Edit</a></td>

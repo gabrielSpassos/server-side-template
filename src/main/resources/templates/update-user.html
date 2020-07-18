@@ -1,6 +1,6 @@
 <form action="#"
       th:action="@{/update/users/{id}(id=${user.id})}"
-      th:object="${userRequest}"
+      th:object="${user}"
       method="post">
 
     <label for="login">Login</label>
