@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Thymeleaf POC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,7 +11,15 @@
 <body>
     <div class="container">
         <h2>Users</h2>
-        <p th:text="${errorMessage}">1</p>
+
+        <div class="alert alert-success" th:if="${successMessage != null}">
+            <strong th:text="${successMessage}">Success</strong>
+        </div>
+
+        <div class="alert alert-warning" th:if="${errorMessage != null}">
+            <strong th:text="${errorMessage}">Warning</strong>
+        </div>
+
         <table class="table table-bordered">
             <thead>
             <tr>

@@ -38,6 +38,7 @@ public class UserController {
 
         try {
             userService.createUser(userRequest);
+            model.addAttribute("successMessage", "Successfully created user");
         } catch (BusinessException e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
@@ -62,6 +63,7 @@ public class UserController {
 
         try {
             userService.updateUser(id, userRequest);
+            model.addAttribute("successMessage", "Successfully updated user");
         } catch (BusinessException e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
@@ -73,6 +75,7 @@ public class UserController {
     @GetMapping("/delete/users/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model) {
         userService.deleteUser(id);
+        model.addAttribute("successMessage", "Successfully deleted user");
 
         model.addAttribute("users", userService.getActiveUsers());
         return "index";
