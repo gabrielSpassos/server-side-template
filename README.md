@@ -36,3 +36,10 @@ docker build -t sst .
 ```
 docker run -p 8080:8080 sst:latest
 ```
+
+### Test 
+
+* Run unit tests (JUnit 5)
+```
+./gradlew clean test
+```
